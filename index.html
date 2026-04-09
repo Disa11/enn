@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía de Estudio: Informe Macroeconómico</title>
+    <title>Estudio Profundo: Informe Macroeconómico 2025</title>
     <style>
         :root {
-            --primary: #1E3A8A; /* Azul corporativo */
-            --secondary: #3B82F6;
-            --accent: #F59E0B; /* Naranja para alertas/deuda */
-            --bg: #F3F4F6;
-            --text: #1F2937;
-            --card-bg: #FFFFFF;
+            --primary: #b91c1c; /* Rojo oscuro académico */
+            --primary-light: #ef4444;
+            --secondary: #1e293b; /* Pizarra oscuro */
+            --accent: #f59e0b; /* Ámbar para advertencias */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #334155;
+            --text-light: #64748b;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
@@ -24,102 +26,159 @@
         }
 
         header {
-            background-color: var(--primary);
+            background-color: var(--secondary);
             color: white;
-            padding: 2rem;
+            padding: 2.5rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--primary);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
         }
 
         header p {
             margin-top: 0.5rem;
-            opacity: 0.9;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
+        /* Navegación por Pestañas */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 0.5rem;
             margin-bottom: 2rem;
-            gap: 1rem;
         }
 
         .tab-btn {
-            background-color: var(--card-bg);
-            border: 2px solid var(--primary);
-            color: var(--primary);
+            background-color: var(--surface);
+            border: 1px solid #e2e8f0;
+            color: var(--text);
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        .tab-btn.active, .tab-btn:hover {
+        .tab-btn:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
             background-color: var(--primary);
             color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
         }
 
         .tab-content {
             display: none;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Dashboard Styles */
-        .dashboard {
+        /* Tarjetas de Resumen */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .info-card.warning { border-left-color: var(--accent); }
+        .info-card.danger { border-left-color: var(--primary); }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 0.5rem;
+        }
+
+        .info-card ul {
+            padding-left: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .info-card li { margin-bottom: 0.5rem; }
+        .highlight { font-weight: bold; color: var(--primary); }
+
+        /* Tabla Estilizada */
+        .table-container {
+            overflow-x: auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        th.positive { background-color: #059669; }
+        th.negative { background-color: #dc2626; }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: #f8fafc; }
+
+        /* Flashcards (Tarjetas de Memoria) */
+        .flashcard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .stat-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--secondary);
-        }
-
-        .stat-card.warning {
-            border-top-color: var(--accent);
-        }
-
-        .stat-card h3 {
-            margin-top: 0;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        /* Flashcard Styles */
-        .flashcard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
         .flashcard {
             background-color: transparent;
-            height: 250px;
+            height: 220px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -129,10 +188,10 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.6s;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 12px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
         .flashcard.flipped .flashcard-inner {
@@ -143,37 +202,48 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
             backface-visibility: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 1.5rem;
             box-sizing: border-box;
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .flashcard-front {
-            background-color: var(--card-bg);
-            color: var(--primary);
-            border: 2px solid var(--secondary);
-            font-size: 1.2rem;
-            font-weight: bold;
+            background-color: var(--surface);
+            color: var(--secondary);
+            border: 2px solid #e2e8f0;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .flashcard-back {
-            background-color: var(--primary);
+            background-color: var(--secondary);
             color: white;
             transform: rotateY(180deg);
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-align: left;
+            align-items: flex-start;
         }
 
-        .hint {
+        .flashcard-front .hint {
             font-size: 0.8rem;
-            color: #6B7280;
-            position: absolute;
-            bottom: 10px;
+            color: var(--text-light);
+            margin-top: 1rem;
+            font-weight: normal;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            background-color: rgba(255,255,255,0.2);
         }
     </style>
 </head>
@@ -181,58 +251,151 @@
 
     <header>
         <h1>El Efecto Dominó</h1>
-        <p>Herramienta de Estudio: Economía y Empresas en Nicaragua (2025)</p>
+        <p>Impacto de la Inflación y la Deuda Pública en la Economía y el Tejido Empresarial de Nicaragua (2025)</p>
     </header>
 
     <div class="container">
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('resumen')">📊 Datos Clave</button>
-            <button class="tab-btn" onclick="openTab('flashcards')">🧠 Tarjetas de Repaso</button>
+            <button class="tab-btn active" onclick="openTab('macro')">1. Escenario Macroeconómico</button>
+            <button class="tab-btn" onclick="openTab('deuda')">2. Análisis de Deuda</button>
+            <button class="tab-btn" onclick="openTab('impacto')">3. Impacto Empresarial</button>
+            <button class="tab-btn" onclick="openTab('marketing')">4. Estrategia MKT</button>
+            <button class="tab-btn" onclick="openTab('flashcards')" style="background-color: var(--secondary); color: white;">🧠 Modo Estudio (Q&A)</button>
         </div>
 
-        <div id="resumen" class="tab-content active">
-            <div class="dashboard">
-                <div class="stat-card">
-                    <h3>📈 Entorno Macroeconómico</h3>
+        <div id="macro" class="tab-content active">
+            <div class="grid-cards">
+                <div class="info-card">
+                    <h3>📈 Crecimiento Económico</h3>
                     <ul>
-                        <li><strong>Crecimiento del PIB:</strong> 4.9% (Quinto año consecutivo).</li>
-                        <li><strong>Inflación:</strong> 2.70% (Controlada vs. 2024).</li>
-                        <li><strong>Desempleo:</strong> 2.4% (Mercado laboral estable).</li>
+                        <li><span class="highlight">Quinto año consecutivo</span> de crecimiento en el país.</li>
+                        <li>El Producto Interno Bruto (PIB) se expandió un <span class="highlight">4.9% en 2025</span>.</li>
+                        <li>El mercado laboral se muestra robusto con una tasa de desempleo de <span class="highlight">2.4%</span> (a nov. 2025).</li>
+                        <li>Existe un superávit fiscal del <span class="highlight">3.6% del PIB</span>.</li>
                     </ul>
                 </div>
-                <div class="stat-card warning">
-                    <h3>⚠️ La Alerta: Deuda y Costo de Vida</h3>
+                <div class="info-card">
+                    <h3>📉 Control de Inflación (IPC)</h3>
                     <ul>
-                        <li><strong>Deuda Total:</strong> $16,245.1 millones (82.5% del PIB).</li>
-                        <li><strong>Carga Privada:</strong> Paga el 80.5% del servicio de deuda.</li>
-                        <li><strong>Canasta Básica:</strong> Supera los $568, erosionando el salario real pese a la baja inflación.</li>
+                        <li>Cierre 2025: <span class="highlight">2.70%</span> (Menor al 2.84% de 2024 y lejos del pico de 11.59% en 2022).</li>
+                        <li>Proyección BCN 2026: Rango del <span class="highlight">2.5% al 3.5%</span>.</li>
+                    </ul>
+                    <p><strong>Factores del éxito (Según BCN):</strong></p>
+                    <ul>
+                        <li><strong>Ancla Cambiaria:</strong> Deslizamiento del tipo de cambio en 0%.</li>
+                        <li><strong>Subsidios:</strong> Congelamiento de precios en combustibles, gas y transporte.</li>
+                        <li><strong>Externa:</strong> Desaceleración de la inflación importada.</li>
                     </ul>
                 </div>
-                <div class="stat-card">
-                    <h3>🎯 Estrategia de Marketing</h3>
+            </div>
+        </div>
+
+        <div id="deuda" class="tab-content">
+            <div class="grid-cards">
+                <div class="info-card danger">
+                    <h3>⚠️ La Sombra del Crecimiento: Deuda Total</h3>
+                    <p>La deuda externa total alcanzó <span class="highlight">$16,245.1 millones</span> (Aumento del 2.7% vs año anterior), lo que equivale al <span class="highlight">82.5% del PIB</span>.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🏛️ Deuda Externa Pública</h3>
                     <ul>
-                        <li><strong>Público Masivo:</strong> Promociones, cupones y valor por dinero.</li>
-                        <li><strong>Público Alto:</strong> Experiencia y diferenciación de marca.</li>
-                        <li><strong>Presupuestos:</strong> Migrar a marketing digital (SEO/SEM) por su alto ROI ante falta de liquidez.</li>
+                        <li><strong>Monto:</strong> $8,836.6 millones (<span class="highlight">54.4%</span> del total).</li>
+                        <li><strong>Proporción:</strong> Se redujo al 48.1% del PIB gracias al superávit fiscal.</li>
+                        <li><strong>Condiciones favorables:</strong> Plazos largos (21 años promedio) y tasas de interés bajas (2.84%).</li>
+                    </ul>
+                </div>
+
+                <div class="info-card warning">
+                    <h3>🏢 Deuda Externa Privada</h3>
+                    <ul>
+                        <li><strong>Monto:</strong> $7,408.5 millones (<span class="highlight">45.6%</span> del total).</li>
+                        <li><strong>Absorción:</strong> El sector privado recibió el <span class="highlight">85.7%</span> de los nuevos desembolsos ($3,937M) en 2025.</li>
+                        <li><strong>Condiciones duras:</strong> Plazos cortos (14 años) y tasas altas (5.30%).</li>
+                        <li><strong>Carga de pago:</strong> El sector privado pagó el <span class="highlight">80.5%</span> de todo el servicio de deuda externa en 2025 ($3,996.6M).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="impacto" class="tab-content">
+            <p>El contraste entre la inflación controlada y el alto endeudamiento crea un entorno empresarial dual. A continuación, la tabla analítica del informe:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="positive">Efectos Positivos</th>
+                            <th class="negative">Efectos Negativos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estabilidad de precios:</strong> Protege el poder adquisitivo y permite una planificación financiera certera.</td>
+                            <td><strong>Alto costo de deuda privada:</strong> El 80.5% del pago recae en privados, reduciendo caja para reinversión o marketing.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mercado laboral robusto:</strong> Desempleo bajo (2.4%) y crecimiento de salarios reales sostienen la demanda interna.</td>
+                            <td><strong>Presión en costos operativos:</strong> La canasta básica supera los $568, el doble del salario mínimo. Posibles demandas salariales.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Crecimiento sectorial:</strong> Construcción, comercio e industria dinamizados por el crédito.</td>
+                            <td><strong>Vulnerabilidad externa:</strong> Riesgo ante baja de remesas, aranceles o desaceleración global.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estabilidad financiera:</strong> Superávit fiscal y sistema bancario capitalizado brindan confianza a la inversión.</td>
+                            <td><strong>Dependencia del crédito:</strong> 85.7% de nuevos desembolsos son privados. El crecimiento está muy apalancado (alto riesgo).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="marketing" class="tab-content">
+            <div class="grid-cards">
+                <div class="info-card">
+                    <h3>🎯 Segmentación Dual</h3>
+                    <p>La paradoja económica (inflación baja vs alto costo de vida) exige polarizar la estrategia:</p>
+                    <ul>
+                        <li><strong>Ingresos Medios/Altos:</strong> Estrategias de valor agregado, marketing experiencial y fuerte diferenciación de marca.</li>
+                        <li><strong>Ingresos Bajos (Mayoría):</strong> Priorizan la economía. Enfoque en promociones agresivas, precios competitivos y formatos de bajo costo.</li>
+                    </ul>
+                </div>
+                <div class="info-card warning">
+                    <h3>💰 Presupuesto y Canales (ROI)</h3>
+                    <p>Como las deudas ahogan la liquidez de las empresas, no hay dinero para desperdiciar:</p>
+                    <ul>
+                        <li><strong>Abandonar masivos:</strong> Reducir publicidad tradicional costosa.</li>
+                        <li><strong>Marketing Digital (Alto Rendimiento):</strong> SEO, SEM, TikTok, FB, IG. Son canales medibles y de bajo costo.</li>
+                        <li><strong>Analítica de Datos:</strong> Apuntar solo a audiencias con alta probabilidad de conversión para no dispersar recursos.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🗣️ Mensaje Clave de Marca</h3>
+                    <p>En incertidumbre, la gente compra lo seguro:</p>
+                    <ul>
+                        <li>Transmitir estabilidad y confianza.</li>
+                        <li>Enfatizar calidad, durabilidad y el valor a largo plazo.</li>
+                        <li><strong>Clave de cierre:</strong> Ofrecer financiamiento accesible o planes de pago flexibles da gran ventaja competitiva.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div id="flashcards" class="tab-content">
-            <p style="text-align: center; margin-bottom: 2rem;"><em>Haz clic en las tarjetas para ver la respuesta. Úsalas para simular las preguntas del jurado.</em></p>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Haz clic en las tarjetas para voltearlas. Pon a prueba tu retención de datos antes de la defensa.</p>
             
             <div class="flashcard-grid">
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
                         <div class="flashcard-front">
-                            ¿Cuáles son los 3 factores que lograron bajar la inflación al 2.70%?
-                            <span class="hint">Clic para girar</span>
+                            <span class="pill" style="color: #0ea5e9; border: 1px solid #0ea5e9;">Datos Duros</span>
+                            ¿Cuál fue el crecimiento del PIB en 2025 y qué porcentaje alcanzó la inflación?
+                            <span class="hint">Toca para revelar</span>
                         </div>
                         <div class="flashcard-back">
-                            1. Política de ancla cambiaria (deslizamiento 0%).<br>
-                            2. Política de subsidios (combustible, transporte, gas).<br>
-                            3. Reducción de la inflación importada a nivel global.
+                            <span class="pill">Respuesta</span>
+                            <p><strong>PIB:</strong> Creció un 4.9% (quinto año consecutivo de crecimiento).</p>
+                            <p><strong>Inflación:</strong> Cerró en 2.70% (Proyección 2026: 2.5% a 3.5%).</p>
                         </div>
                     </div>
                 </div>
@@ -240,11 +403,17 @@
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
                         <div class="flashcard-front">
-                            Si la inflación es baja, ¿por qué la población sigue sintiendo presión económica?
-                            <span class="hint">Clic para girar</span>
+                            <span class="pill" style="color: #0ea5e9; border: 1px solid #0ea5e9;">Conceptos</span>
+                            Menciona los 3 factores que permitieron mantener la inflación en 2.70%
+                            <span class="hint">Toca para revelar</span>
                         </div>
                         <div class="flashcard-back">
-                            Porque la inflación mide la "velocidad" a la que suben los precios, pero no baja los precios que ya subieron. La canasta básica ya superó los $568, lo cual es el doble del salario mínimo promedio.
+                            <span class="pill">Respuesta</span>
+                            <ol style="padding-left: 1.2rem; margin: 0;">
+                                <li><strong>Ancla cambiaria:</strong> Deslizamiento del córdoba al 0%.</li>
+                                <li><strong>Subsidios:</strong> Al combustible, gas y transporte.</li>
+                                <li><strong>Externa:</strong> Inflación importada baja.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -252,11 +421,14 @@
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
                         <div class="flashcard-front">
-                            ¿Por qué la Deuda Privada es más peligrosa que la Deuda Pública en este escenario?
-                            <span class="hint">Clic para girar</span>
+                            <span class="pill" style="color: #f59e0b; border: 1px solid #f59e0b;">Deuda</span>
+                            Compara las condiciones (plazo y tasa) de la Deuda Pública vs. la Deuda Privada
+                            <span class="hint">Toca para revelar</span>
                         </div>
                         <div class="flashcard-back">
-                            La deuda pública tiene mejores condiciones (21 años plazo, 2.84% interés). La privada es más cara (14 años, 5.30%) y el sector privado está absorbiendo el 85.7% de los nuevos préstamos, asfixiando su liquidez.
+                            <span class="pill">Respuesta</span>
+                            <p><strong>Pública (54.4%):</strong> Más barata y cómoda. Plazo promedio de 21 años, tasa de 2.84%.</p>
+                            <p><strong>Privada (45.6%):</strong> Más cara y asfixiante. Plazo promedio de 14 años, tasa del 5.30%.</p>
                         </div>
                     </div>
                 </div>
@@ -264,11 +436,41 @@
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
                         <div class="flashcard-front">
-                            ¿Cómo debe cambiar la estrategia de marketing debido al alto endeudamiento de las empresas?
-                            <span class="hint">Clic para girar</span>
+                            <span class="pill" style="color: #f59e0b; border: 1px solid #f59e0b;">Análisis</span>
+                            ¿Por qué hay presión salarial si la inflación es baja?
+                            <span class="hint">Toca para revelar</span>
                         </div>
                         <div class="flashcard-back">
-                            Debido a que gran parte del flujo de caja se va en pagar deudas, los presupuestos de marketing se reducen. Se debe abandonar la publicidad masiva tradicional y priorizar el Marketing Digital (SEO, SEM, redes) para medir el ROI con exactitud.
+                            <span class="pill">Respuesta</span>
+                            <p>Porque la baja inflación solo significa que los precios dejaron de subir rápido, pero ya están altísimos. La canasta básica supera los <strong>$568</strong>, siendo más del doble del salario mínimo, erosionando el poder adquisitivo real.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span class="pill" style="color: #ef4444; border: 1px solid #ef4444;">Estrategia MKT</span>
+                            ¿Cómo impacta el pago de la deuda en los departamentos de Marketing?
+                            <span class="hint">Toca para revelar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            <span class="pill">Respuesta</span>
+                            <p>El sector privado absorbe el <strong>80.5%</strong> del pago total de deuda. Esto drena la liquidez (flujo de caja). Los departamentos de marketing tienen menos presupuesto, obligándolos a buscar el máximo ROI usando marketing digital de alto rendimiento (SEO/SEM) en lugar de medios masivos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span class="pill" style="color: #ef4444; border: 1px solid #ef4444;">Estrategia MKT</span>
+                            Explica la "Estrategia de Segmentación Dual"
+                            <span class="hint">Toca para revelar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            <span class="pill">Respuesta</span>
+                            <p>Se basa en la polarización del consumo: <br><br>Para rentas altas: Vender estatus, experiencia y valor agregado. <br>Para rentas bajas (la mayoría): Ofertas agresivas, bajo costo y valor por dinero.</p>
                         </div>
                     </div>
                 </div>
@@ -278,21 +480,29 @@
 
     <script>
         function openTab(tabName) {
-            // Ocultar todos los contenidos
             let contents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < contents.length; i++) {
                 contents[i].classList.remove("active");
             }
             
-            // Quitar clase active de los botones
             let buttons = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("active");
+                if(buttons[i].innerText.includes('Modo Estudio')) {
+                    buttons[i].style.backgroundColor = 'var(--secondary)';
+                    buttons[i].style.color = 'white';
+                    buttons[i].style.borderColor = 'transparent';
+                }
             }
             
-            // Mostrar el tab actual y añadir active al botón
             document.getElementById(tabName).classList.add("active");
-            event.currentTarget.classList.add("active");
+            
+            let activeBtn = event.currentTarget;
+            activeBtn.classList.add("active");
+            
+            if(tabName === 'flashcards') {
+                activeBtn.style.backgroundColor = 'var(--primary)';
+            }
         }
     </script>
 </body>
