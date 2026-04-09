@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio: Informe Macroeconómico</title>
+    <style>
+        :root {
+            --primary: #1E3A8A; /* Azul corporativo */
+            --secondary: #3B82F6;
+            --accent: #F59E0B; /* Naranja para alertas/deuda */
+            --bg: #F3F4F6;
+            --text: #1F2937;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary);
+        }
+
+        .stat-card.warning {
+            border-top-color: var(--accent);
+        }
+
+        .stat-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Flashcard Styles */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .flashcard {
+            background-color: transparent;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
+        .flashcard-front {
+            background-color: var(--card-bg);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .flashcard-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: #6B7280;
+            position: absolute;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>El Efecto Dominó</h1>
+        <p>Herramienta de Estudio: Economía y Empresas en Nicaragua (2025)</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('resumen')">📊 Datos Clave</button>
+            <button class="tab-btn" onclick="openTab('flashcards')">🧠 Tarjetas de Repaso</button>
+        </div>
+
+        <div id="resumen" class="tab-content active">
+            <div class="dashboard">
+                <div class="stat-card">
+                    <h3>📈 Entorno Macroeconómico</h3>
+                    <ul>
+                        <li><strong>Crecimiento del PIB:</strong> 4.9% (Quinto año consecutivo).</li>
+                        <li><strong>Inflación:</strong> 2.70% (Controlada vs. 2024).</li>
+                        <li><strong>Desempleo:</strong> 2.4% (Mercado laboral estable).</li>
+                    </ul>
+                </div>
+                <div class="stat-card warning">
+                    <h3>⚠️ La Alerta: Deuda y Costo de Vida</h3>
+                    <ul>
+                        <li><strong>Deuda Total:</strong> $16,245.1 millones (82.5% del PIB).</li>
+                        <li><strong>Carga Privada:</strong> Paga el 80.5% del servicio de deuda.</li>
+                        <li><strong>Canasta Básica:</strong> Supera los $568, erosionando el salario real pese a la baja inflación.</li>
+                    </ul>
+                </div>
+                <div class="stat-card">
+                    <h3>🎯 Estrategia de Marketing</h3>
+                    <ul>
+                        <li><strong>Público Masivo:</strong> Promociones, cupones y valor por dinero.</li>
+                        <li><strong>Público Alto:</strong> Experiencia y diferenciación de marca.</li>
+                        <li><strong>Presupuestos:</strong> Migrar a marketing digital (SEO/SEM) por su alto ROI ante falta de liquidez.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="flashcards" class="tab-content">
+            <p style="text-align: center; margin-bottom: 2rem;"><em>Haz clic en las tarjetas para ver la respuesta. Úsalas para simular las preguntas del jurado.</em></p>
+            
+            <div class="flashcard-grid">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            ¿Cuáles son los 3 factores que lograron bajar la inflación al 2.70%?
+                            <span class="hint">Clic para girar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            1. Política de ancla cambiaria (deslizamiento 0%).<br>
+                            2. Política de subsidios (combustible, transporte, gas).<br>
+                            3. Reducción de la inflación importada a nivel global.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            Si la inflación es baja, ¿por qué la población sigue sintiendo presión económica?
+                            <span class="hint">Clic para girar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            Porque la inflación mide la "velocidad" a la que suben los precios, pero no baja los precios que ya subieron. La canasta básica ya superó los $568, lo cual es el doble del salario mínimo promedio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            ¿Por qué la Deuda Privada es más peligrosa que la Deuda Pública en este escenario?
+                            <span class="hint">Clic para girar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            La deuda pública tiene mejores condiciones (21 años plazo, 2.84% interés). La privada es más cara (14 años, 5.30%) y el sector privado está absorbiendo el 85.7% de los nuevos préstamos, asfixiando su liquidez.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            ¿Cómo debe cambiar la estrategia de marketing debido al alto endeudamiento de las empresas?
+                            <span class="hint">Clic para girar</span>
+                        </div>
+                        <div class="flashcard-back">
+                            Debido a que gran parte del flujo de caja se va en pagar deudas, los presupuestos de marketing se reducen. Se debe abandonar la publicidad masiva tradicional y priorizar el Marketing Digital (SEO, SEM, redes) para medir el ROI con exactitud.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Ocultar todos los contenidos
+            let contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            
+            // Quitar clase active de los botones
+            let buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            
+            // Mostrar el tab actual y añadir active al botón
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
